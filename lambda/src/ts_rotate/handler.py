@@ -62,22 +62,9 @@ def lambda_handler(event, context):
 
 
     The Secret SecretString is expected to be a JSON object with the following keys:
-
-            - Type: The type of tailscale secret stored (one of: auth-key )
-            - Attributes: A JSON object containing the token attributes, which depend on the type of secret, see below
-
-        auth-key attribute keys:
-            - id: the tailscale token id
-            - token_value: the secret token value
-            - description:
-            - key_request: dict of
-                - tags: list of strings
-                - expiry_seconds: the TTL of the token in seconds
-                - reusable: bool
-                - ephemeral: bool
-                - description:
-
-
+        - Type:  the type of the secret
+        - Attributes: internal state used by the manager for the specified type, everything in here should be considered as having private visibility
+        - other key/values: defined by the Type, this is the public interface to the secret and what you should consume in your applications
 
     Raises:
         ResourceNotFoundException: If the secret with the specified arn and stage does not exist

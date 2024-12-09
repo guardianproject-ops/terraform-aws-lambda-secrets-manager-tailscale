@@ -37,8 +37,16 @@ class SecretManager:
     def finish_secret(self):
         logger.info(f"finishSecret({self.name}): Not implemented")
 
-    def _format_payload(self, attributes: Dict) -> Dict:
-        return {"Type": self.name, "Attributes": attributes}
+    def _format_payload(self, attributes: Dict, public: Dict) -> Dict:
+        """
+        Returns a dictionary that in the format of our conventional value for the
+        Secrets Manager secret value ("SecretString").
+        This is a dict with the keys
+        - Type:  the type of the secret
+        - Attributes: internal state used by the manager for the specified type, everything in here should be considered as having private visibility
+        - other key/values: defined by the Type, this is the public interface to the secret and what you should consume in your applications
+        """
+        return {"Type": self.name, "Attributes": attributes} | public
 
 
 MANAGERS: Dict[str, Type[SecretManager]] = {}

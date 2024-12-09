@@ -163,6 +163,21 @@ def create_auth_key(token: AccessToken, key_request: AuthKeyRequest) -> AuthToke
 
 @common.secret_manager("auth-key")
 class AuthKeyManager(common.SecretManager):
+    """
+    auth-key public keys:
+        - auth_key: the current auth key value
+    auth-key attribute keys:
+        - id: the tailscale token id
+        - token_value: the secret token value
+        - description:
+        - key_request: dict of
+            - tags: list of strings
+            - expiry_seconds: the TTL of the token in seconds
+            - reusable: bool
+            - ephemeral: bool
+            - description:
+    """
+
     def __init__(self, context: Dict):
         super().__init__(context)
         required = ["TS_CLIENT_ID_PARAM", "TS_CLIENT_SECRET_PARAM", "TS_TAILNET"]
@@ -185,7 +200,7 @@ class AuthKeyManager(common.SecretManager):
         token: AuthToken = create_auth_key(self.access_token, self.key_request)
         attrs = dataclasses.asdict(token)
         attrs["key_request"] = dataclasses.asdict(self.key_request)
-        return self._format_payload(attrs)
+        return self._format_payload(attrs, {"auth_key": token.token_value})
 
     def test_secret(self):
         try:
