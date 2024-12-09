@@ -33,6 +33,7 @@ node_modules
 .node_repl_history
 
 #  Local .terraform directories
+#
 **/.terraform/*
 
 # .tfstate files
@@ -51,3 +52,6 @@ artifacts/lambda
 
 .direnv
 .env
+
+builds/
+examples/simple/.terraform*

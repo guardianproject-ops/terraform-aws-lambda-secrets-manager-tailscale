@@ -1,0 +1,6 @@
+tailnet          = "example.com"
+namespace        = "gpex"
+name             = "ts-rotate"
+environment      = "dev"
+ts_client_id     = "......"
+ts_client_secret = "tsk....."
