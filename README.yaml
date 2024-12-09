@@ -19,24 +19,17 @@ badges: []
 # Short description of this project
 description: |-
   This is a terraform module that creates a lambda function that rotates Tailscale secrets stored in AWS Secrets Manager.
+  This module does not provision the aws secrets manager secrets resource, you must do that yourself.
 
 introduction: |-
 
   The provided lambda can rotate these types of tailscale secrets:
-
-  This module does not provision the aws secrets manager secrets resource.
+    - auth keys
 
 # How to use this project
 usage: |-
 
-  ```hcl
-  module "ts_rotate" {
-    source          = "git::https://gitlab.com/guardianproject-ops/terraform-aws-lambda-secrets-manager-tailscale.git?ref=master"
-
-    secret_prefix = "tailscale/*"
-    context = module.this.context
-  }
-  ```
+  See [examples/simple/](./examples/simple).
 
 include:
   - "docs/terraform.md"

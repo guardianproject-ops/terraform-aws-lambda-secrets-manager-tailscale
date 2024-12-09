@@ -40,8 +40,8 @@ node_modules
 *.tfstate
 *.tfstate.*
 
-.build-harness
-build-harness
+.build-harness*
+build-harness*
 
 *.zip
 
