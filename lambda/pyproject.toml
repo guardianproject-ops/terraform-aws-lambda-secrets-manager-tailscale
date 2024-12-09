@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "ts-rotate-lambda"
+version = "0.1.0"
+description = ""
+authors = ["Abel Luck <abel@guardianproject.info>"]
+license = "GPLv3"
+packages = [{include = "ts_rotate", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+requests = "2.32.3"
+
+
+[tool.poetry.group.dev.dependencies]
+boto3 = "^1.35.76"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+flake8 = "*"
+black = "*"
+bandit = "*"
+isort = "*"
+mypy = "^1.2.0"
+
+[tool.isort]
+py_version = 310
+profile = "black"
+src_paths = ["gm", "tests"]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
