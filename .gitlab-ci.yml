@@ -1,1 +1,5 @@
-Šw%¹×©®ˆŞrØ.j·bjzk¢7œ¶Šlşšèç-²·Ÿ™¨§~)^µêëiú+š×¦¦V­zÏí~jºW ŠÙZmÈ²š
+---
+include:
+  - project: guardianproject-ops/projects
+    ref: main
+    file: terraform_templates/tf-module.gitlab-ci.yml
