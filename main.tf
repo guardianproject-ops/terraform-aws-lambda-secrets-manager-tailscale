@@ -37,11 +37,11 @@ data "aws_iam_policy_document" "lambda" {
       "ssm:GetParameter",
       "kms:Decrypt",
     ]
-    resources = compact([
+    resources = module.this.enabled ? compact([
       aws_ssm_parameter.ts_client_id[0].arn,
       aws_ssm_parameter.ts_client_secret[0].arn,
       var.kms_key_arn
-    ])
+    ]) : []
 
   }
 
@@ -61,7 +61,7 @@ data "aws_iam_policy_document" "lambda" {
     condition {
       test     = "StringEquals"
       variable = "secretsmanager:resource/AllowRotationLambdaArn"
-      values   = [module.lambda[0].lambda_function_arn]
+      values   = module.this.enabled ? [module.lambda[0].lambda_function_arn] : []
 
     }
   }
