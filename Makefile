@@ -1,3 +1,6 @@
+# Warning: this file is controlled by the bot at https://gitlab.com/guardianproject-ops/projects
+#          any changes you make to this file will be overwritten.
+#          You can add your make tasks to Makefile.local and it fill be included.
 SHELL := /bin/bash
 
 export HELP_FILTER ?= help|terraform|lint
@@ -23,3 +26,5 @@ export README_TEMPLATE_FILE := ${BUILD_HARNESS_EXTENSIONS_PATH}/templates/README
 ## Lint terraform code
 lint:
 	$(SELF) readme/lint terraform/install terraform/get-modules terraform/lint $(LINT_TF_VALIDATE) tflint
+
+-include Makefile.local
