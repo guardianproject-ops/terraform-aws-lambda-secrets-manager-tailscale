@@ -9,7 +9,7 @@ include:
         - .gitlab-ci.local.yml
   - project: renovate-bot/renovate-runner
     file: /templates/renovate-config-validator.gitlab-ci.yml
-    ref: v19.71.0
+    ref: v19.89.0
   - project: guardianproject-ops/projects
     ref: main
     file: terraform_templates/tf-module.gitlab-ci.yml
